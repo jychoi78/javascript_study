@@ -32,7 +32,7 @@ inc 가 100 보다 작거나 같을 때까지 inc를 1 씩 증가시키고,
 
 for(sum=0,i=0; i<=10; i++)
   {
-    var sum = sum + i; /*1+1, 2+2, 3+3, 4+4, 5+5*/
+    var sum = sum + i;
     console.log(sum);
   }
 
