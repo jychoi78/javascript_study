@@ -5,7 +5,7 @@ var juicelist = ['juice1','juice2','juice3','juice4','juice5']
 function inputcash () {
   var usercash = document.getElementById('cash').value; // 입력 금액
   console.log(usercash)
-}
+}//인풋에 입력된 값
 
 var cokesum = 0; //콜라 초기 개수
 var cidersum = 0; //사이다 초기 개수
@@ -21,7 +21,7 @@ function cokecount () {
     console.log(lastgoods+'개의 콜라가 남았습니다.');
   } else {
     console.log('콜라가 품절되었습니다.');
-  }
+  } // 콜라
 }
 
 function cidercount () {
@@ -35,7 +35,7 @@ function cidercount () {
   } else {
     console.log('사이다가 품절되었습니다.');
   }
-}
+} //사이다
 
 function juicecount () {
   juicesum = juicesum + 1; //쥬스 구입개수
@@ -48,7 +48,7 @@ function juicecount () {
   } else {
     console.log('쥬스가 품절되었습니다.');
   }
-}
+} //쥬스
 
 function calculation () {
   var usercash = document.getElementById('cash').value; //입력 금액
@@ -60,8 +60,11 @@ function calculation () {
   if (usercash < allsum) {
     console.log('잔액이 부족합니다.');
   }
+  else if(usercash == '') {
+    console.log('금액을 투입해 주세요.');
+  } // 왜 작동 안할까요?????
   else {
     console.log('총액은' + allsum + '입니다.');
     console.log('잔액은' + totalcash + '입니다.');
   }
-}
+} //계산방식
