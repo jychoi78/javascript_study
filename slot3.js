@@ -4,7 +4,11 @@ var juicelist = ['juice1','juice2','juice3','juice4','juice5']
 
 function inputcash () {
   var usercash = document.getElementById('cash').value; // 입력 금액
-  console.log(usercash)
+  if(usercash == '') {
+    console.log('금액을 투입해 주세요.');
+  } else {
+    console.log(usercash);
+  }
 }//인풋에 입력된 값
 
 var cokesum = 0; //콜라 초기 개수
@@ -57,14 +61,17 @@ function calculation () {
   var juice = juicesum * 500;
   var allsum = coke + cider + juice;
   var totalcash = usercash - allsum;
-  if (usercash < allsum) {
-    console.log('잔액이 부족합니다.');
-  }
-  else if(usercash == '') {
+  var change = parseInt(totalcash / 500);
+  var smallchange = totalcash % 500;
+  if (usercash == '') {
     console.log('금액을 투입해 주세요.');
+  }
+  else if(usercash < allsum) {
+    console.log('잔액이 부족합니다.');
   } // 왜 작동 안할까요?????
   else {
     console.log('총액은' + allsum + '입니다.');
     console.log('잔액은' + totalcash + '입니다.');
+    console.log('500원짜리' + change + '개' + '100원짜리' + smallchange + '개 입니다.' );
   }
 } //계산방식
