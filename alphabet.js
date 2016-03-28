@@ -31,8 +31,12 @@ function array () {
   }
   console.log(countset);
 
-  for (n=0; n<countset.length; n++) {
+  var characterset = countset.join();
+
+  console.log(characterset);
+
+  /*for (n=0; n<countset.length; n++) {
     var pull = countset[n];
     console.log(pull)
-  }
+  }*/
 }
