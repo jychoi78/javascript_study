@@ -1,72 +1,70 @@
-var coke = {
-  price: 500,
-  total: 10
+var drinks = {
+  kind: [
+    {
+      label: '콜라',
+      price: 500,
+      total: 10
+    },
+    {
+      label: '사이다',
+      price: 300,
+      total: 10
+    },
+    {
+      label: '쥬스',
+      price: 200,
+      total: 10
+    }
+  ]
 }
 
-var cider = {
-  price: 300,
-  total: 20
-}
-
-var juice = {
-  price: 200,
-  total: 10
-}
+var drinkorderList = []
 
 var vending = {
   coin: 0,
-  price: 0,
+  totalPrice: 0,
   sumPrice: 0,
   orderTotal: "",
+
   inputMoney: function(coin) {
     this.coin = coin;
     console.log(this.coin + '투입됐습니다.');
   },
-  drinkSelect: function(drink,num) {
-    if (drink == '콜라') {
-      coke.total = coke.total - num;
-      this.price = num * coke.price;
-      this.sumPrice = this.sumPrice + this.price;
-      this.orderResult = '콜라' + num + '개' + '가격' + this.price;
-      this.orderTotal = this.orderTotal + this.orderResult;
-      console.log(this.orderResult);
-      console.log(this.sumPrice);
-    }
-    else if (drink == '사이다') {
-      cider.total = cider.total - num;
-      this.price = num * cider.price;
-      this.sumPrice = this.sumPrice + this.price;
-      this.orderResult = '콜라' + num + '개' + '가격' + this.price;
-      this.orderTotal = this.orderTotal + this.orderResult;
-      console.log(this.orderResult);
-      console.log(this.sumPrice);
-    }
-    else if (drink == '쥬스') {
-      juice.total = juice.total - num;
-      this.price = num * juice.price;
-      this.sumPrice = this.sumPrice + this.price;
-      this.orderResult = '콜라' + num + '개' + '가격' + this.price;
-      this.orderTotal = this.orderTotal + this.orderResult;
-      console.log(this.orderResult);
-      console.log(this.sumPrice);
-    }
-    else {
-      console.log('해당 음료가 없습니다.')
+
+  drinkSelect: function(drink,num){
+    for (i=0; i<=drinks.kind.length; i++) {
+      if (drink == drinks.kind[i]) {
+        if (drinks.kind[i].total >= num) {
+          this.totalPrice = num * drinks.kind[i].price; // 각각의 음료 가격
+          this.sumPrice = this.sumPrice + this.totalPrice; // 총가격
+          drinks.kind[i].total = drinks.kind[i].total - num; // 남은 음료 갯수
+          this.orderResult = drinks.kind[i].label + num + '개' + '가격' + this.totalPrice;
+          this.orderTotal = this.orderTotal + this.orderResult;
+          var orderlistContain = drinkorderList.push(this.orderResult);
+          console.log(this.orderResult);
+          console.log(this.sumPrice);
+        } else {
+          console.log('음료가 모자랍니다.')
+        }
+      }
     };
   },
+
   drinkOrder: function() {
     var totalsum = this.coin - this.sumPrice;
-    if (this.coin < this.price) {
+
+    if (this.coin < this.sumPrice) {
       console.log('금액이 부족합니다.')
     }
     else if (this.coin == 0) {
       console.log('금액을 투입해주세요.')
     }
     else {
-      console.log(this.orderTotal);
-      console.log('거스름돈' + totalsum)
+      console.log('주문 내역은' + drinkorderList)
+      console.log('거스름돈은' + totalsum)
     }
   },
+
   status: function() {
     console.log('남은 콜라 갯수' + coke.total);
     console.log('남은 사이다 갯수' + cider.total);
